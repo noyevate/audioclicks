@@ -4,9 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  // 1. Add async here
   WidgetsFlutterBinding.ensureInitialized();
-  GetStorage.init();
+  await GetStorage.init(); // 2. Add await here!
   runApp(const MyApp());
 }
 

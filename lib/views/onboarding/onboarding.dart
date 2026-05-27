@@ -1,6 +1,8 @@
+import 'package:audioclicks/controllers/auth_controller.dart';
 import 'package:audioclicks/views/auth/register/pages/register_screen.dart';
+import 'package:audioclicks/views/home/pages/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:get/get.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
@@ -10,34 +12,39 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  final AuthController auth = Get.put(AuthController());
+
   @override
   void initState() {
     super.initState();
+    _initializeApp();
+  }
 
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const RegisterScreen(),
-        ),
-      );
-    });
+  Future<void> _initializeApp() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (auth.userId.value.isNotEmpty) {
+      await auth.fetchLatestProfile();
+    }
+
+    if (auth.userId.value.isEmpty) {
+      Get.offAll(() => const RegisterScreen());
+    } else {
+      Get.offAll(() => const HomeScreen());
+    }
+
+    debugPrint("Onboarding complete. User ID: ${auth.userId.value}");
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Image.asset(
-          "assets/images/atEEM.jpg",
+          "assets/images/audioswam_splash.png",
+          // width: 200,
         ),
-
-        // child: Lottie.asset(
-        //   'assets/images/audioswam_logo.json',
-        //   width: 200,
-        //   height: 200,
-        //   repeat: true,
-        // ),
       ),
     );
   }

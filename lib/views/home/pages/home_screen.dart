@@ -1,6 +1,9 @@
+import 'package:audioclicks/controllers/auth_controller.dart';
+import 'package:audioclicks/views/auth/register/widgets/payment_modal.dart';
 import 'package:audioclicks/views/home/dashboard/pages/dasboard_tab.dart';
 import 'package:audioclicks/views/home/profile/pages/profile_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,12 +13,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final AuthController auth = Get.find<AuthController>();
+
   int currentIndex = 0;
 
   final List<Widget> pages = [
-    const DashboardTab(),
-    const ProfileTab(),
+    DashboardTab(),
+    ProfileTab(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!auth.hasActiveSubscription) {
+        showPaymentDialog(context, auth.email.value);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

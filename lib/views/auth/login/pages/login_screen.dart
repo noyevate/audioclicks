@@ -65,6 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
               /// EMAIL FIELD
               TextField(
                 controller: emailController,
+                style: const TextStyle(
+                  color: Colors.black,
+                ),
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: "Email",
@@ -88,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: authController.isLoading.value
                           ? null // Disable button while loading
                           : () {
-                              authController.login(emailController.text.trim());
+                              authController.login(
+                                  context, emailController.text.trim());
                             },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
