@@ -15,9 +15,10 @@ class ProfileTab extends StatelessWidget {
     });
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Very light gray background
+      backgroundColor: const Color(0xFFF9FAFB),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFF9FAFB),
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         title: const Text(

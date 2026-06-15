@@ -97,7 +97,8 @@ class DashboardTab extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF9FAFB),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        backgroundColor: const Color(0xFFF9FAFB),
         elevation: 0,
         title: Obx(() => Text(
               "Hello, @${auth.username.value}",
@@ -184,6 +185,7 @@ class DashboardTab extends StatelessWidget {
                             const Text("Today's Progress",
                                 style: TextStyle(
                                     fontSize: 18,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Inter')),
                             const SizedBox(height: 4),
@@ -209,6 +211,7 @@ class DashboardTab extends StatelessWidget {
                 const Text("🎧 Today's Curated List",
                     style: TextStyle(
                         fontSize: 18,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Inter')),
                 const SizedBox(height: 12),
@@ -243,6 +246,7 @@ class DashboardTab extends StatelessWidget {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
+                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                         fontFamily: 'Inter')),
